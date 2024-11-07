@@ -1,8 +1,7 @@
-# Ex-3 RECOGNITION OF A VALID ARITHMETIC EXPRESSION THAT USES OPERATOR AND USING YACC
-
+# Ex-3-RECOGNITION-OF-A-VALID-ARITHMETIC-EXPRESSION-THAT-USES-OPERATOR-AND-USING-YACC
+# Date:
 # AIM
 To write a yacc program to recognize a valid arithmetic expression that uses operator +,- ,* and /.
-
 # ALGORITHM
 1.	Start the program.
 2.	Write a program in the vi editor and save it with .l extension.
@@ -12,13 +11,7 @@ To write a yacc program to recognize a valid arithmetic expression that uses ope
 6.	Compile the yacc program with yacc compiler to produce output file as y.tab.c. eg $ yacc –d arith_id.y
 7.	Compile these with the C compiler as gcc lex.yy.c y.tab.c
 8.	Enter an arithmetic expression as input and the tokens are identified as output.
-
 # PROGRAM
-Program for Recognition of a valid Arithmetic expression that uses Operator and using YAAC
-
-Developed by : VISWA PRAKAASH N J
-
-RegisterNumber : 212223040246
 
 ```
 %{
@@ -38,9 +31,8 @@ RegisterNumber : 212223040246
 
 %%
 
-int yywrap()
-{
-    return 1;
+int yywrap() {
+    return 1;  // End of input signal
 }
 
 %{
@@ -52,11 +44,11 @@ void yyerror(const char *s);
 %token ID PLUS MINUS MULTIPLICATION DIVISION
 
 %%
-statement: ID '=' E
-{
+statement: ID '=' E {
     printf("\nValid arithmetic expression\n");
     $$ = $3;
-};
+}
+;
 
 E: E PLUS ID
  | E MINUS ID
@@ -69,18 +61,15 @@ E: E PLUS ID
 
 extern FILE* yyin;
 
-int main()
-{
+int main() {
     yyin = stdin;
-    do
-    {
+    do {
         yyparse();
     } while (!feof(yyin));
     return 0;
 }
 
-void yyerror(const char *s)
-{
+void yyerror(const char *s) {
     fprintf(stderr, "Error: %s\n", s);
 }
 
@@ -88,8 +77,7 @@ void yyerror(const char *s)
 
 # OUTPUT
 
-![ex3op](https://github.com/user-attachments/assets/fdf47cbb-4e85-46ce-a3e8-30c514d61c44)
+![output](https://github.com/user-attachments/assets/3d1ca6ee-e9e7-47f6-bca7-ee3c40496e39)
 
 # RESULT
 A YACC program to recognize a valid arithmetic expression that uses operator +,-,* and / is executed successfully and the output is verified.
-
